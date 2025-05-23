@@ -18,7 +18,7 @@ export function useAddToCart() {
       .select("id, quantity")
       .eq("user_id", user.id)
       .eq("product_id", productId)
-      .maybeSingle(); // ✅ güvenli hale getirildi
+      .maybeSingle();
 
     if (error) {
       console.error("Sepet sorgusu hatası:", error.message);

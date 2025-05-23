@@ -6,7 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const { user, isSeller, loading } = useSellerStatus();
+  const { user, isSeller } = useSellerStatus();
   const router = useRouter();
 
   const handleLogout = async () => {

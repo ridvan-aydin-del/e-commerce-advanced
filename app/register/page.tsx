@@ -18,7 +18,7 @@ export default function RegisterPage() {
     if (error) {
       setError(error.message);
     } else {
-      router.push("/"); // kayıt başarılıysa login sayfasına yönlendir
+      router.push("/"); // kayıt başarılıysa ana sayfaya yönlendir
     }
   };
 

@@ -20,7 +20,7 @@ type TextareaProps = {
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 const AddProduct = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user] = useState<User | null>(null);
 
   const { isSeller, loading } = useSellerStatus();
 
@@ -51,7 +51,7 @@ const AddProduct = () => {
       title: form.title,
       description: form.description,
       price: form.price,
-      image_url: photoArray,
+      photo_urls_array: photoArray, // ✅ doğru alan adı
       stock: form.stock,
       category: form.category,
       user_id: user?.id,

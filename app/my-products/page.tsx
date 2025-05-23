@@ -1,7 +1,8 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import type { User } from "@supabase/supabase-js";
+import Image from "next/image";
 
 type Product = {
   id: string;
@@ -9,11 +10,10 @@ type Product = {
   price: number;
   stock: number;
   category: string;
-  image_url?: string;
+  photo_urls_array?: string[];
 };
 
 const MyProducts = () => {
-  const [user, setUser] = useState<User | null>(null);
   const [sellerProducts, setSellerProducts] = useState<Product[]>([]);
   const [updatedStatus, setUpdatedStatus] = useState<string | null>(null);
 
@@ -21,7 +21,6 @@ const MyProducts = () => {
     const fetchSellerProducts = async () => {
       const { data: userData } = await supabase.auth.getUser();
       const currentUser = userData.user;
-      setUser(currentUser);
 
       if (currentUser) {
         const { data } = await supabase
@@ -36,7 +35,11 @@ const MyProducts = () => {
     fetchSellerProducts();
   }, []);
 
-  const handleChange = (index: number, field: keyof Product, value: any) => {
+  const handleChange = (
+    index: number,
+    field: keyof Product,
+    value: string | number
+  ) => {
     setSellerProducts((prev) =>
       prev.map((product, i) =>
         i === index ? { ...product, [field]: value } : product
@@ -59,7 +62,7 @@ const MyProducts = () => {
       alert("Güncelleme başarısız: " + error.message);
     } else {
       setUpdatedStatus(product.id);
-      setTimeout(() => setUpdatedStatus(null), 2000); // mesajı sonra temizle
+      setTimeout(() => setUpdatedStatus(null), 2000);
     }
   };
 
@@ -71,54 +74,75 @@ const MyProducts = () => {
         <p>Henüz ürün eklenmemiş.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {sellerProducts.map((product, index) => (
-            <div
-              key={product.id}
-              className="border p-4 rounded shadow bg-white space-y-2"
-            >
-              <img
-                src={product.image_url || "/placeholder.png"}
-                alt={product.title}
-                className="w-full h-40 object-cover rounded"
-              />
+          {sellerProducts.map((product, index) => {
+            const rawUrl =
+              Array.isArray(product.photo_urls_array) &&
+              product.photo_urls_array[0]
+                ? product.photo_urls_array[0]
+                : null;
 
-              <input
-                value={product.title}
-                onChange={(e) => handleChange(index, "title", e.target.value)}
-                className="w-full border p-2 rounded"
-              />
-              <input
-                type="number"
-                value={product.price}
-                onChange={(e) => handleChange(index, "price", +e.target.value)}
-                className="w-full border p-2 rounded"
-              />
-              <input
-                type="number"
-                value={product.stock}
-                onChange={(e) => handleChange(index, "stock", +e.target.value)}
-                className="w-full border p-2 rounded"
-              />
-              <input
-                value={product.category}
-                onChange={(e) =>
-                  handleChange(index, "category", e.target.value)
-                }
-                className="w-full border p-2 rounded"
-              />
+            const imageSrc =
+              rawUrl && (rawUrl.startsWith("http") || rawUrl.startsWith("/"))
+                ? rawUrl
+                : "/placeholder.png";
 
-              <button
-                onClick={() => handleUpdate(product)}
-                className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
+            return (
+              <div
+                key={product.id}
+                className="border p-4 rounded shadow bg-white space-y-2"
               >
-                Güncelle
-              </button>
+                <div className="relative w-full h-40">
+                  <Image
+                    src={imageSrc}
+                    alt={product.title}
+                    fill
+                    className="object-cover rounded"
+                    sizes="100%"
+                  />
+                </div>
 
-              {updatedStatus === product.id && (
-                <p className="text-green-500 text-sm mt-1">✔️ Güncellendi</p>
-              )}
-            </div>
-          ))}
+                <input
+                  value={product.title}
+                  onChange={(e) => handleChange(index, "title", e.target.value)}
+                  className="w-full border p-2 rounded"
+                />
+                <input
+                  type="number"
+                  value={product.price}
+                  onChange={(e) =>
+                    handleChange(index, "price", +e.target.value)
+                  }
+                  className="w-full border p-2 rounded"
+                />
+                <input
+                  type="number"
+                  value={product.stock}
+                  onChange={(e) =>
+                    handleChange(index, "stock", +e.target.value)
+                  }
+                  className="w-full border p-2 rounded"
+                />
+                <input
+                  value={product.category}
+                  onChange={(e) =>
+                    handleChange(index, "category", e.target.value)
+                  }
+                  className="w-full border p-2 rounded"
+                />
+
+                <button
+                  onClick={() => handleUpdate(product)}
+                  className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
+                >
+                  Güncelle
+                </button>
+
+                {updatedStatus === product.id && (
+                  <p className="text-green-500 text-sm mt-1">✔️ Güncellendi</p>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

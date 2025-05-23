@@ -20,7 +20,7 @@ export function useSellerStatus() {
           .from("sellers")
           .select("id")
           .eq("user_id", currentUser.id)
-          .maybeSingle(); // ✅ güvenli yöntem
+          .maybeSingle();
 
         if (error) {
           console.error("Satıcı sorgusunda hata:", error.message);
@@ -44,7 +44,7 @@ export function useSellerStatus() {
             .from("sellers")
             .select("id")
             .eq("user_id", currentUser.id)
-            .maybeSingle(); // ✅ burada da düzeltildi
+            .maybeSingle();
 
           if (error) {
             console.error("Auth değişiminde hata:", error.message);
