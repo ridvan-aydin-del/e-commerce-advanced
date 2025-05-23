@@ -70,7 +70,7 @@ Bu proje, **Next.js** ve **Supabase** kullanılarak geliştirilmiş, kullanıcı
 
 ## 📸 Demo
 
-Henüz deploy edilmedi. Lokal kurulum ile test edilebilir.
+https://e-commerce-advanced-mylu.vercel.app/
 
 ---
 
@@ -83,11 +83,19 @@ npm install
 npm run dev
 ```
 
+.env.local dosyasına Supabase bağlantı bilgilerini (url + public anon key) girmeniz gerekmektedir.
+
+---
+
+## 📌 Notlar
+
+Ödeme ekranı tamamen sahte olup sadece deneyim amaçlı tasarlanmıştır.
+
 Supabase RLS politikaları manuel olarak tanımlanmıştır.
 
-Proje kişisel portfolyo amacıyla geliştirilmiştir.
+Bu proje kişisel portfolyo ve öğrenme süreci kapsamında geliştirilmiştir.
 
-✍️ Geliştirici
+## ✍️ Geliştirici
 
 Ad: Rıdvan Aydın
 Github: github.com/ridvan-aydin-del
