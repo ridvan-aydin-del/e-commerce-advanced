@@ -1,105 +1,86 @@
-🛒 Next.js E-Ticaret Uygulaması
+# 🛒 Next.js E-Ticaret Uygulaması
 
-Bu proje, Next.js ve Supabase kullanılarak geliştirilmiş tam işlevli bir e-ticaret uygulamasıdır. Kullanıcılar ürünleri görüntüleyebilir, sepete ekleyebilir, sahte bir ödeme adımından geçerek sipariş oluşturabilir ve sipariş durumlarını takip edebilir.
+Bu proje, **Next.js** ve **Supabase** kullanılarak geliştirilmiş, kullanıcı ve satıcı rollerini destekleyen, tam işlevli bir e-ticaret platformudur. Kullanıcılar ürünleri görüntüleyebilir, sepete ekleyebilir, sahte bir ödeme adımından geçerek sipariş verebilir ve sipariş durumlarını takip edebilir.
 
-🔧 Kullanılan Teknolojiler
+---
 
-Next.js 13+ (App Router)
+## 🔧 Kullanılan Teknolojiler
 
-Supabase (Auth, DB, Storage)
+- **Next.js 13+ (App Router)**
+- **Supabase** (Auth, DB, RLS, Storage)
+- **Tailwind CSS**
+- **React Hooks** (Custom hooks dahil)
 
-Tailwind CSS
+---
 
-React Hooks (Custom Hooks dahil)
+## 🚀 Özellikler
 
-🚀 Özellikler
+### 👤 Kullanıcı İşlevleri
 
-👤 Kullanıcı İşlevleri
+- Kayıt ve giriş işlemleri (Supabase Auth)
+- Ürünleri filtreleme, arama ve sıralama
+- Sepete ürün ekleme ve çıkarma
+- Sahte ödeme ekranı üzerinden sipariş oluşturma
+- Sipariş geçmişi ve detay görüntüleme
 
-Kayıt ve giriş (Supabase Auth)
+### 🛍️ Satıcı Paneli
 
-Ürünleri görüntüleme
+- Ürün ekleme, düzenleme, stok kontrolü
+- Sipariş durumlarını güncelleme
+- Satışa sunulan ürünlere gelen siparişlerin yönetimi
+- Sipariş verildiğinde stok otomatik azalır
 
-Sepete ürün ekleme
+### 🔒 Güvenlik & Kısıtlamalar
 
-Sipariş oluşturma (sahte ödeme sayfası dahil)
+- **RLS (Row Level Security)** ile kullanıcı yalnızca kendi verilerine erişebilir
+- Ürün silme yerine **stok 0** yapılır (soft delete mantığı)
+- Satıcı olmayan kullanıcılar yönetim sayfalarına erişemez
 
-🛍️ Satıcı Paneli
+---
 
-Kendi ürünlerini ekleme, düzenleme ve stok yönetimi
+## 🖥️ Sayfa Listesi
 
-Siparişlere durum güncelleme (hazırlanıyor / kargoya verildi / teslim edildi)
+| Sayfa             | Açıklama                               |
+| ----------------- | -------------------------------------- |
+| `/`               | Anasayfa (ürün listesi + filtreleme)   |
+| `/cart`           | Kullanıcı sepeti                       |
+| `/checkout`       | Sahte ödeme ekranı + sipariş oluşturma |
+| `/my-orders`      | Kullanıcının tüm siparişleri           |
+| `/my-orders/[id]` | Sipariş detay sayfası (gizlilik dahil) |
+| `/my-products`    | Satıcının ürün yönetimi                |
+| `/add-product`    | Yeni ürün ekleme                       |
+| `/orders`         | Satıcının gelen siparişleri            |
+| `/products/[id]`  | Ürün detay sayfası                     |
 
-Stok otomatik olarak siparişle birlikte azalır
+---
 
-🔒 Güvenlik & Kısıtlamalar
+## 🔄 Geliştirme Aşamaları
 
-RLS (Row Level Security) ile sadece kullanıcıya ait verilere erişim
+- ✅ Auth yapısı kuruldu (giriş/çıkış)
+- ✅ Ürün ekleme ve listeleme tamamlandı
+- ✅ Sepet sistemi (Supabase destekli) kuruldu
+- ✅ Checkout ve sipariş oluşturma tamamlandı
+- ✅ Sipariş geçmişi ve detay sayfası eklendi
+- ✅ Satıcı paneli geliştirildi
+- ✅ Stok güncelleme otomasyonu eklendi
+- ✅ Sipariş detayında kullanıcı doğrulama (sadece sahibi görebilir)
+- ✅ Sayfa erişim güvenliği artırıldı
 
-Ürün silme yerine stok 0 yapılır (soft delete mantığı)
+---
 
-Satıcı olmayan kullanıcılar satıcı paneline erişemez
+## 📸 Demo
 
-🖥️ Sayfa Listesi
+Henüz deploy edilmedi. Lokal kurulum ile test edilebilir.
 
-Sayfa
+---
 
-Açıklama
+## 📁 Kurulum (Local)
 
-/
-
-Anasayfa (ürün listesi)
-
-/cart
-
-Sepetim
-
-/checkout
-
-Ödeme ekranı
-
-/my-orders
-
-Kullanıcı sipariş geçmişi
-
-/seller-orders
-
-Satıcının ürünlerine gelen siparişler
-
-/my-products
-
-Satıcının ürün yönetimi paneli
-
-🔄 Geliştirme Aşamaları
-
-✅ Auth yapısı kuruldu (giriş/çıkış)
-
-✅ Ürün ekleme ve listeleme tamamlandı
-
-✅ Sepet sistemi oluşturuldu (Supabase tabanlı)
-
-✅ Checkout ekranı ve sipariş oluşturma tamamlandı
-
-✅ Satıcı paneli geliştirildi
-
-✅ Stok güncelleme mantığı eklendi
-
-📸 Demo
-
-Henüz deploy edilmedi.
-
-📁 Kurulum (local)
-
-git clone (https://github.com/ridvan-aydin-del/e-commerce-advanced)
-cd proje-adi
+```bash
+git clone https://github.com/ridvan-aydin-del/e-commerce-advanced
+cd e-commerce-advanced
 npm install
 npm run dev
-
-.env.local içerisine Supabase url ve public anon key girilmelidir.
-
-📌 Notlar
-
-Ödeme ekranı sahte olup sadece deneyim amaçlıdır.
 
 Supabase RLS politikaları manuel olarak tanımlanmıştır.
 
@@ -109,3 +90,4 @@ Proje kişisel portfolyo amacıyla geliştirilmiştir.
 
 Ad: Rıdvan Aydın
 Github: github.com/ridvan-aydin-del
+```
