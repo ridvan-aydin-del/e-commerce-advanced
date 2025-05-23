@@ -90,7 +90,7 @@ Henüz deploy edilmedi.
 
 📁 Kurulum (local)
 
-git clone https://github.com/kullaniciAdi/proje-adi.git
+git clone (https://github.com/ridvan-aydin-del/e-commerce-advanced)
 cd proje-adi
 npm install
 npm run dev
