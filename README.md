@@ -81,6 +81,7 @@ git clone https://github.com/ridvan-aydin-del/e-commerce-advanced
 cd e-commerce-advanced
 npm install
 npm run dev
+```
 
 Supabase RLS politikaları manuel olarak tanımlanmıştır.
 
@@ -90,4 +91,3 @@ Proje kişisel portfolyo amacıyla geliştirilmiştir.
 
 Ad: Rıdvan Aydın
 Github: github.com/ridvan-aydin-del
-```
